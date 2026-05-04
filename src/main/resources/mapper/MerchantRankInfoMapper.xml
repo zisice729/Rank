@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zisice.douyin_rank_1.mapper.MerchantRankInfoMapper">
+
+    <select id="listRankInfo" resultType="org.zisice.douyin_rank_1.entity.MerchantRankInfo">
+        SELECT 
+            id, city_id, type, category, merchant_id, sort, 
+            sale_num_month, sale_num_day, date, is_delete, 
+            create_time, update_time
+        FROM merchant_rank_info
+        WHERE is_delete = 0
+          AND date = #{date}
+        ORDER BY sort ASC
+    </select>
+
+    <select id="queryRankList" resultType="org.zisice.douyin_rank_1.entity.MerchantRankInfo">
+        SELECT 
+            id, city_id, type, category, merchant_id, sort, 
+            sale_num_month, sale_num_day, date, is_delete, 
+            create_time, update_time
+        FROM merchant_rank_info
+        WHERE is_delete = 0
+          AND city_id = #{cityId}
+          AND type = #{type}
+          AND category = #{category}
+          AND date = #{date}
+        ORDER BY sort ASC
+    </select>
+
+</mapper>
