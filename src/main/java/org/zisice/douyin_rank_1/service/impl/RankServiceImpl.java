@@ -3,9 +3,9 @@ package org.zisice.douyin_rank_1.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.xxl.job.core.biz.model.ReturnT;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,18 +32,19 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class RankServiceImpl implements RankService {
 
     /**
      * 商家排行榜数据访问层
      */
-    private final MerchantRankInfoMapper merchantRankInfoMapper;
+    @Autowired
+    private MerchantRankInfoMapper merchantRankInfoMapper;
 
     /**
      * Redis 操作模板
      */
-    private final RedisTemplate<String, String> redisTemplate;
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
     /**
      * Redis 版本号 Key，存储当前数据的日期版本

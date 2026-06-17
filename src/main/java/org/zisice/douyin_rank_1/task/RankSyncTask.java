@@ -2,8 +2,8 @@ package org.zisice.douyin_rank_1.task;
 
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.annotation.XxlJob;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.zisice.douyin_rank_1.service.RankService;
 
@@ -19,13 +19,13 @@ import java.util.Date;
  */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class RankSyncTask {
 
     /**
      * 排行榜服务接口
      */
-    private final RankService rankService;
+    @Autowired
+    private RankService rankService;
 
     /**
      * 日期格式化工具

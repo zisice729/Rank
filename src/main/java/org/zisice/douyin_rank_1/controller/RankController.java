@@ -1,7 +1,7 @@
 package org.zisice.douyin_rank_1.controller;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +23,13 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/rank")
-@RequiredArgsConstructor
 public class RankController {
 
     /**
      * 排行榜服务接口
      */
-    private final RankService rankService;
+    @Autowired
+    private RankService rankService;
 
     /**
      * 查询排行榜列表接口
