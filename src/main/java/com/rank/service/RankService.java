@@ -1,8 +1,7 @@
-package org.zisice.douyin_rank_1.service;
+package com.rank.service;
 
 import com.xxl.job.core.biz.model.ReturnT;
-import org.zisice.douyin_rank_1.entity.MerchantRankInfo;
-import org.zisice.douyin_rank_1.param.QueryRankParam;
+import com.rank.common.entity.MerchantRankInfo;
 
 import java.util.List;
 
@@ -18,13 +17,15 @@ public interface RankService {
     /**
      * 查询排行榜列表
      * <p>
-     * 根据查询参数从 Redis 缓存中获取对应的排行榜数据。
+     * 根据城市ID、榜单类型和类目从 Redis 缓存中获取对应的排行榜数据。
      * </p>
      *
-     * @param param 查询参数，包含城市ID、榜单类型和类目
+     * @param cityId   城市ID，000000表示全国
+     * @param type     榜单类型：0-爆款榜，1-飙升榜
+     * @param category 类目：0-全部，1-美食等
      * @return 排行榜商家信息列表
      */
-    List<MerchantRankInfo> list(QueryRankParam param);
+    List<MerchantRankInfo> list(String cityId, Integer type, Integer category);
 
     /**
      * 刷新排行榜数据

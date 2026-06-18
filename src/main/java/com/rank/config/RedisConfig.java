@@ -1,4 +1,4 @@
-package org.zisice.douyin_rank_1.config;
+package com.rank.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,28 +23,31 @@ public class RedisConfig {
      * 避免默认序列化器导致的 key 乱码问题。
      * </p>
      *
-     * @param connectionFactory Redis 连接工厂，由 Spring 自动注入
+     * @param connectionFactory Redis连接工厂，由Spring自动注入
      * @return 配置好的 RedisTemplate 实例
      */
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory connectionFactory) {
+        // 1. 创建 RedisTemplate 实例
         RedisTemplate<String, String> template = new RedisTemplate<>();
+        
+        // 2. 设置连接工厂
         template.setConnectionFactory(connectionFactory);
 
-        // 创建字符串序列化器
+        // 3. 创建字符串序列化器
         StringRedisSerializer stringSerializer = new StringRedisSerializer();
 
-        // 设置 Key 序列化器
+        // 4. 设置 Key 和 Hash Key 序列化器
         template.setKeySerializer(stringSerializer);
-        // 设置 Hash Key 序列化器
         template.setHashKeySerializer(stringSerializer);
-        // 设置 Value 序列化器
+        
+        // 5. 设置 Value 和 Hash Value 序列化器
         template.setValueSerializer(stringSerializer);
-        // 设置 Hash Value 序列化器
         template.setHashValueSerializer(stringSerializer);
 
-        // 初始化模板配置
+        // 6. 初始化模板配置
         template.afterPropertiesSet();
+        
         return template;
     }
 }

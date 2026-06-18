@@ -1,4 +1,4 @@
-package org.zisice.douyin_rank_1.entity;
+package com.rank.common.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;

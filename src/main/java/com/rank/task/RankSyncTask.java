@@ -1,14 +1,10 @@
-package org.zisice.douyin_rank_1.task;
+package com.rank.task;
 
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.annotation.XxlJob;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.zisice.douyin_rank_1.service.RankService;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.rank.service.RankService;
 
 /**
  * 排行榜数据同步任务
@@ -17,7 +13,6 @@ import java.util.Date;
  * 确保缓存数据的时效性。
  * </p>
  */
-@Slf4j
 @Component
 public class RankSyncTask {
 
@@ -26,11 +21,6 @@ public class RankSyncTask {
      */
     @Autowired
     private RankService rankService;
-
-    /**
-     * 日期格式化工具
-     */
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * XXL-Job 定时任务执行方法
@@ -44,8 +34,7 @@ public class RankSyncTask {
      */
     @XxlJob("rankRefresh")
     public ReturnT<String> rankRefresh(String param) {
-        String currentTime = FORMAT.format(new Date());
-        log.info("开始执行排行榜同步任务，当前日期：{}", currentTime);
+        // 直接调用服务层的刷新方法，将任务参数透传
         return rankService.rankRefresh(param);
     }
 }

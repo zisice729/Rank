@@ -1,4 +1,4 @@
-package org.zisice.douyin_rank_1.enums;
+package com.rank.common.enums;
 
 /**
  * 排行榜维度枚举
